@@ -1,0 +1,175 @@
+{% extends('base.html') %}
+
+
+{% block title %}Schedule a consultation{% endblock %}
+
+
+{% block content %}
+<h1>Schedule a consultation</h1>
+<img src="{{ url_for('static', filename='consultation.png') }}" alt="consultation" id="header-img">
+
+<br>
+<h2>Please fill in the form below to create an account and schedule a consultation</h2>
+<br>
+<p>Any fields with "<container class="compulsory">*</container>" must be completed</p>
+<br>
+<form action="{{ url_for('schedule') }}" method="post" autocomplete="off">
+    <div class="form-grid">
+        <div class="form-content">
+            <label for="firstName">First name: <container class="compulsory">*</container></label>
+            <br>
+            <input type="text" id="firstName" name="firstName" placeholder="Alex" {% if user_data %}value="{{ user_data[0] }}"{% endif %} required>
+        </div>
+        <div class="form-content">
+            <label for="lastName">Last name: <container class="compulsory">*</container></label>
+            <br>
+            <input type="text" id="lastName" name="lastName" placeholder="Johnson" {% if user_data %}value="{{ user_data[1] }}"{% endif %} required>
+        </div>
+        <div class="form-content">
+            <label for="email">Email address: <container class="compulsory">*</container></label>
+            <br>
+            <input type="email" id="email" name="email" placeholder="alex@email.com" {% if user_data %}value="{{ user_data[2] }}"{% endif %} required>
+        </div>
+        <div class="form-content">
+            <label for="phone">Phone number: <container class="compulsory">*</container></label>
+            <br>
+            <input type="tel" id="phone" name="phone" placeholder="Phone number" {% if user_data %}value="{{ user_data[3] }}"{% endif %} required>
+        </div>
+        <div class="form-content">
+            <label for="password">Password: <container class="compulsory">*</container></label>
+            <br>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+        </div>
+        <div class="form-content">
+            <label for="confirmPassword">Confirm password: <container class="compulsory">*</container></label>
+            <br>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" required>
+        </div>
+    </div>
+
+    <h2>Select a time you are available (Grey slots are already booked) <container class="compulsory">*</container></h2>
+    <div class="times-grid">
+        <div class="times-content">
+            <p>Monday</p>
+        </div>
+        <div class="times-content">
+            <p>Tuesday</p>
+        </div>
+        <div class="times-content">
+            <p>Wednesday</p>
+        </div>
+        <div class="times-content">
+            <p>Thursday</p>
+        </div>
+        <div class="times-content">
+            <p>Friday</p>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Monday at 8:00')">8:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Tuesday at 8:00')" disabled>8:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Wednesday at 8:00')">8:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Thursday at 8:00')">8:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Friday at 8:00')" disabled>8:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Monday at 10:00')">10:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Tuesday at 10:00')">10:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Wednesday at 10:00')" disabled>10:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Thursday at 10:00')" disabled>10:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Friday at 10:00')">10:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Monday at 12:00')" disabled>12:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Tuesday at 12:00')" disabled>12:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Wednesday at 12:00')" disabled>12:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Thursday at 12:00')">12:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Friday at 12:00')" disabled>12:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Monday at 14:00')" disabled>14:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Tuesday at 14:00')">14:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Wednesday at 14:00')" disabled>14:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Thursday at 14:00')">14:00</button>
+        </div>
+        <div class="times-content">
+            <button type="button" onclick="setTimeslot('Friday at 14:00')">14:00</button>
+        </div>
+    </div>
+    <h3>Time for booking</h3>
+    <p id="time"></p>
+    <br>
+    <label for="timeslot">Check box if this is correct: </label>
+    <input type="checkbox" id="timeslot" name="timeslot" required>
+    
+    <h2>Please select what you would like to cover in your consultation <container class="compulsory">*</container></h2>
+
+    <br>
+    <label for="typeID">Please select from dropdown</label>
+    <br>
+    <select name="typeID" id="typeID" required>
+        <option value="" disabled selected>-- Select here --</option>
+        {% for productType in productTypes %}
+            <option value={{productType[0]}}>{{ productType[1] }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <h3>{{ message }}</h3>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <br>
+    <br>
+    <br>
+    <input type="checkbox" name="agreeToPrivacyPolicy" id="agreeToPrivacyPolicy" required>
+    <label for="agreeToPrivacyPolicy">I agree to the <a href="{{ url_for('policy') }}" target="_blank">privacy policy</a> <container class="compulsory">*</container></label>
+    <br>
+    <br>
+    <button type="submit">Create account and schedule</button>
+    <p>I already have an account <a href="{{ url_for('login') }}">Log in</a></p>
+</form>
+
+<script>
+    let timeslot = "";
+    document.getElementById('timeslot').value = timeslot;
+    document.getElementById('time').innerHTML = timeslot;
+
+    function setTimeslot(timeslot) {
+        document.getElementById('timeslot').value = timeslot;
+        document.getElementById('time').innerHTML = timeslot;
+    }
+</script>
+{% endblock %}

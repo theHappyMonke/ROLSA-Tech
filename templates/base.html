@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Rolsa Technologies - Your partner in sustainable energy solutions. Explore our products and services to reduce your carbon footprint.">
+        <title>{% block title %}{% endblock %} - Rolsa Technologies</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    </head>
+
+    <nav>
+        <h1 id="title">Rolsa</h1>
+        <div id="navbar">
+            <a href="{{ url_for('products') }}">Products</a>
+            <a href="{{ url_for('schedule') }}">Schedule a consultaion</a>
+            <a href="{{ url_for('about') }}">About us</a>
+            <a href="{{ url_for('carbonFootprint') }}">Your carbon footprint</a>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('user') }}">User panel</a>
+            {% else %}
+            <a href="{{ url_for('login') }}">Log in</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <body>
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+    <footer>
+        <a href="{{ url_for('policy') }}">Privacy policy</a>
+        <br>
+        <br>
+        <a target="_blank" href="https://icons8.com/icon/hxV1EY71atKh/green-technology">Green Technology</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+    </footer>
+</html>

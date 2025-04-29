@@ -1,0 +1,166 @@
+{% extends('base.html') %}
+
+
+{% block title %}Your carbon footprint{% endblock %}
+
+
+{% block content %}
+<h1>Your carbon footprint</h1>
+<img src="{{ url_for('static', filename='carbon-footprint.jpg') }}" alt="consultation" id="header-img">
+<h2>What is a carbon footprint?</h2>
+<br>
+<p>Your carbon footprint is a number that shows the amount of greenhouse gas emissions, such as carbon dioxide, in a kilograms or grams.</p>
+<br>
+<br>
+<h2>What can be done to lower this number?</h2>
+<br>
+<p>There are many ways to reduce your carbon footprint, they range from changing what technology you use or how regularly you use technology.</p>
+<br>
+<br>
+<h2>These technologies can be:</h2>
+<br>
+<br>
+
+<div class="your-carbon-footprint-grid">
+    <div class="your-carbon-footprint-content">
+        <img src="{{ url_for('static', filename='solar-panel.png') }}" alt="Solar panels">
+    </div>
+    <div class="your-carbon-footprint-content">
+        <h3>Solar panels</h3>
+        <p>Solar panels are useful for cleaner energy, they take energy from the UV (ultra violet) rays from the sun to produce power.</p>
+    </div>
+    <div class="your-carbon-footprint-content">
+        <h3>Electric vehicles (EV)</h3>
+        <p>Electric vehicles are a far better alternative to other vehicles as they don’t create a similar amount of carbon dioxide as other motorised vehicles.</p>
+    </div>
+    <div class="your-carbon-footprint-content">
+        <img src="{{ url_for('static', filename='electric-vehicle.jpg') }}" alt="Electric vehicle">
+    </div>
+    <div class="your-carbon-footprint-content">
+        <img src="{{ url_for('static', filename='commercial-ev-charging-station.jpg') }}" alt="EV chargers">
+    </div>
+    <div class="your-carbon-footprint-content">
+        <h3>EV chargers</h3>
+        <p>EV chargers are necessary for charging an electric vehicles and can help to have one locally to encourage cleaner energy use.</p>
+    </div>
+    <div class="your-carbon-footprint-content">
+        <h3>Smarthome Energy Management Systems (EMS)</h3>
+        <p>EMS systems help you keep track of your energy usage in your property which can help you find areas to improve your carbon footprint.</p>
+    </div>
+    <div class="your-carbon-footprint-content">
+        <img src="{{ url_for('static', filename='ems.png') }}" alt="Energy management system">
+    </div>
+</div>
+
+<h2>Curious about your carbon footprint?</h2>
+<br>
+<br>
+{% if response %}
+    <h2>Estimation:</h2>
+    <h3>Weight in g {{ response['data']['attributes']['carbon_g'] }}</h3>
+    <h3>Weight in lb {{ response['data']['attributes']['carbon_lb'] }}</h3>
+    <h3>Weight in kg {{ response['data']['attributes']['carbon_kg'] }}</h3>
+    <h3>Weight in mt {{ response['data']['attributes']['carbon_mt'] }}</h3>
+{% endif %}
+<br>
+<br>
+<div class="carbon-estimate-grid">
+    <div class="carbon-estimate-content">
+        <h3>Fill in the form below to calculate an estimate your vehicle carbon emission.</h3>
+        <br>
+        <p>Any fields with "<container class="compulsory">*</container>" must be completed</p>
+        <form action="{{ url_for('carbonFootprint') }}" method="post" autocomplete="off">
+            <input type="hidden" name="form_id" value="carbon-estimate">
+            <div class="form-grid">
+                <div class="form-content">
+                    <label for="vehicle-unit">Please select your unit of measurement: <container class="compulsory">*</container></label>
+                    <br>
+                    <select name="vehicle-unit" id="vehicle-unit" required>
+                        <option value="" disabled selected>-- Select here --</option>
+                        <option value="km">Kilometres</option>
+                        <option value="mi">Miles</option>
+                    </select>
+                </div>
+                <div class="form-content">
+                    <label for="vehicle-value">Please enter the distance: <container class="compulsory">*</container></label>
+                    <br>
+                    <input type="number" id="vehicle-value" name="vehicle-value" placeholder="100" required>
+                </div>
+            </div>
+            <div class="form-content">
+                <label for="ID">Your vehicle model ID: <container class="compulsory">*</container></label>
+                <br>
+                <input type="text" id="ID" name="ID" placeholder="7268a9b7-17e8-4c8d-acca-57059252afe9" required>
+                <br>
+                <a href="{{ url_for('vehicleID') }}" target="_blank">How do I know my vehicle ID?</a>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <h3>{{ message }}</h3>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <button type="submit">Confirm information and calculate</button>
+        </form>
+    </div>
+    <div class="carbon-estimate-content">
+        <h3>Fill in the form below to calculate an estimate your electricity carbon emission.</h3>
+        <br>
+        <p>Any fields with "<container class="compulsory">*</container>" must be completed</p>
+        <form action="{{ url_for('carbonFootprint') }}" method="post" autocomplete="off">
+            <input type="hidden" name="form_id" value="electricity-estimate">
+            <div class="form-grid">
+                <div class="form-content">
+                    <label for="energy-unit">Please select your unit of measurement: <container class="compulsory">*</container></label>
+                    <br>
+                    <select name="energy-unit" id="energy-unit" required>
+                        <option value="" disabled selected>-- Select here --</option>
+                        <option value="kwh">Kilowatt hours</option>
+                        <option value="mwh">Megawatt hours</option>
+                    </select>
+                </div>
+                <div class="form-content">
+                    <label for="energy-value">Please enter the value: <container class="compulsory">*</container></label>
+                    <br>
+                    <input type="number" id="energy-value" name="energy-value" placeholder="100" required>
+                </div>
+                <div class="form-content">
+                    <label for="country">Your country's ISO 3166 country code: <container class="compulsory">*</container></label>
+                    <br>
+                    <input type="text" id="country" name="country" placeholder="gb" required>
+                    <br>
+                    <a href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes" target="_blank">Find your country's two letter ISO 3166 code here</a>
+                </div>
+                <div class="form-content">
+                    <label for="state">Your state (Must be a two letter ISO state code): </label>
+                    <br>
+                    <input type="text" id="state" name="state" placeholder="fl">
+                    <br>
+                    <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">Find your two letter ISO state code here</a>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <h3>{{ message }}</h3>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <button type="submit">Confirm information and calculate</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
