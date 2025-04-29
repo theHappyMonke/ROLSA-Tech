@@ -1,0 +1,28 @@
+{% extends('base.html') %}
+
+
+{% block title %}About us{% endblock %}
+
+
+{% block content %}
+<h1>About us at Rolsa</h1>
+<img src="{{ url_for('static', filename='office.jpg') }}" alt="Our-office-space" id="header-img">
+
+<p>We at Rolsa technologies aim to reduce carbon emissions. This is our main goal as a company.</p>
+
+<br>
+<h2>Meet the owners!</h2>
+
+<div class="meet-the-owners-grid">
+    <div class="meet-the-owners-content">
+        <img src="{{ url_for('static', filename='john-smith.png') }}" alt="John-Smith">
+        <h3>Hi! I'm John Smith</h3>
+        <p>I decided to join Rolsa and their dream because I wanted to help them make a difference.</p>
+    </div>
+    <div class="meet-the-owners-content">
+        <img src="{{ url_for('static', filename='brian-griffith.jpg') }}" alt="Brian-Griffith">
+        <h3>Hi! I'm Brian Griffith</h3>
+        <p>I decided to join Rolsa technologies because they love helping the planet and that's what i'm all about.</p>
+    </div>
+</div>
+{% endblock %}

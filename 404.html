@@ -1,0 +1,12 @@
+{% extends('base.html') %}
+
+
+{% block title %}Error 404: Content not found{% endblock %}
+
+
+{% block content %}
+<h1>Error 404: Content not found</h1>
+<p>Sorry but we cannot find the page you requested</p>
+<br>
+<p>Please return to the <a href="{{ url_for('about') }}">about</a> page</p>
+{% endblock %}

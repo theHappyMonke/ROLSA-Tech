@@ -1,0 +1,312 @@
+
+/* -- Website general tags -- */
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+nav {
+    width: 100%;
+    background-color: #002200;
+    height: auto;
+    display: flex;
+    justify-content: space-between; /* Used to space out the title and navbar */
+    align-items: center; /* Vertically centers items */
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #C4E5CA;
+    color: #002200;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+footer {
+    text-align: center;
+    padding: 60px;
+    margin-top: 50px;
+    border-top: #002200 solid 2px;
+}
+
+h1 {
+    font-size: 5em;
+    -webkit-text-stroke: 5px #006611;
+    color: #ffffff;
+}
+
+select {
+    width: 20em;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+    border-style: none;
+    box-shadow: 0 0 15px #00220044;
+}
+
+button {
+    width: 20em;
+    padding: 20px 15px;
+    margin: 10px;
+    border-radius: 20px;
+    border-style: none;
+    background-color: #006611;
+    color: #C4E5CA;
+    font-size: 1em;
+    box-shadow: 0 0 15px #00220044;
+}
+
+button:hover {
+    background-color: #006611cc;
+}
+
+a {
+    color: #0000ff;
+}
+
+
+/* -- Website id's -- */
+
+#title {
+    margin: 0;
+    margin-left: 5%;
+    padding: 20px;
+    font-size: 6em;
+    font-weight: bold;
+    -webkit-text-stroke: 5px #006611;
+    color: #ffffff;
+    text-decoration: none;
+    width: 100px;
+}
+
+#navbar {
+    display: flex;             /* Enable flexbox */
+    justify-content: flex-end; /* Align items to the right */
+    margin-right: 10%;         /* Optional: Add space from the right edge */
+}
+
+#navbar > a {
+    padding: 20px;
+    margin: 0;
+    margin-right: 10px;        /* Spacing between the links */
+    background-color: #006611;
+    color: #C4E5CA;
+    text-decoration: none;
+}
+
+#navbar > a:hover {
+    background-color: #006611cc;
+}
+
+#header-img {
+    border-radius: 60px;
+    box-shadow: 5px 5px 10px #00220044, -5px -5px 10px #00220044;
+    width: 60%;
+}
+
+#timeslot {
+    background: none;
+    border: none;
+    font-size: 1em;
+    color: #002200;
+}
+
+
+/* -- Website classes -- */
+.content {
+    text-align: center;
+    width: 75%;
+    align-self: center;
+    margin: auto;
+}
+
+.form-grid {
+    display: grid;
+    height: auto;
+    width: 100%;
+    gap: 20;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form-content {
+    width: 100%;
+    padding-bottom: 3em;
+}
+
+.form-content > input {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+    border-style: none;
+    box-shadow: 0 0 15px #00220044;
+}
+
+.times-grid {
+    display: grid;
+    height: auto;
+    width: 100%;
+    gap: 20;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.times-content {
+    width: 100%;
+    padding-bottom: 0.5em;
+}
+
+.times-content > button {
+    padding: 10px;
+    margin: 10px;
+    width: 5em;
+    border-radius: 20px;
+    border-style: none;
+    box-shadow: 0 0 15px #00220044;
+    background-color: #ffffff;
+    color: #002200;
+}
+
+.times-content > button:hover {
+    background-color: #ffffffcc;
+}
+
+.times-content > button:disabled {
+    background-color: #ffffff44;
+    cursor: not-allowed;
+}
+
+.meet-the-owners-grid {
+    display: grid;
+    height: auto;
+    gap: 20;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.meet-the-owners-content {
+    width: 100%;
+    height: auto;
+}
+
+.meet-the-owners-content > img {
+    height: 40%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #00220044, -5px -5px 10px #00220044;
+}
+
+.your-carbon-footprint-grid {
+    display: grid;
+    height: auto;
+    gap: 10;
+    margin-bottom: 200px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.your-carbon-footprint-content {
+    width: 100%;
+    height: auto;
+    padding-bottom: 10%;
+}
+
+.your-carbon-footprint-content > img {
+    width: 80%;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 10px #00220044, -5px -5px 10px #00220044;
+}
+
+.carbon-estimate-grid {
+    display: grid;
+    height: auto;
+    gap: 10;
+    margin-bottom: 200px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 10px #00220044, -5px -5px 10px #00220044;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.carbon-estimate-content {
+    width: auto;
+    height: auto;
+    padding: 5%;
+    
+}
+
+.vehicle-ID-grid {
+    display: grid;
+    height: auto;
+    gap: 10;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.vehicle-ID-content {
+    width: auto;
+    height: auto;
+    padding: 5%;
+    margin: 5%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #00220044, -5px -5px 10px #00220044;
+}
+
+.compulsory {
+    color: #610000;
+}
+
+.delete-button {
+    background-color: #610000;
+    width: auto;
+    height: auto;
+}
+
+.delete-button:hover {
+    background-color: #ff0000cc;
+}
+
+.upcoming-events {
+    margin-bottom: 40px;
+}
+
+.upcoming-events h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.upcoming-events ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.event-item {
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #00661144; /* Light green background */
+    border-left: 5px solid #006611; /* Strong green left border */
+    border-radius: 4px;
+    font-size: large;
+    font-weight: bold; /* Bold text for emphasis */
+    transition: transform 0.2s;
+}
+
+.event-item:hover {
+    transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.drop-down-button {
+    background-color: #006611cc;
+    color: #C4E5CA;
+    cursor: pointer;
+    padding: 18px;
+}
+  
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .drop-down-button:hover {
+    background-color: #006611;
+}
+  
+/* Style the collapsible content. Note: hidden by default */
+.drop-down-content {
+    padding: 0 18px;
+    background-color: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}

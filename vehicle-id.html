@@ -1,0 +1,37 @@
+{% extends('base.html') %}
+
+
+{% block title %}Vehicle ID{% endblock %}
+
+
+{% block content %}
+<h1>How to get your vehicle ID</h1>
+{% if vehicles %}
+    <div class="vehicle-ID-grid">
+        {% for vehicle in vehicles %}
+            <div class="vehicle-ID-content">
+                <h2>Name: {{ vehicle['data']['attributes']['name'] }}</h2>
+                {% if vehicle['data']['type'] == "vehicle_make" %}
+                    <h3>Number of models: {{ vehicle['data']['attributes']['number_of_models'] }}</h3>
+                    <form action="{{ url_for('vehicleID') }}" method="post">
+                        <button type="submit" value="{{ vehicle['data']['id'] }}" id="vehicle_make_id" name="vehicle_make_id">View car models</button>
+                    </form>
+                {% else %}
+                    <h3>Year: {{ vehicle['data']['attributes']['year'] }}</h3>
+                    <h3>Vehicle make: {{ vehicle['data']['attributes']['vehicle_make'] }}</h3>
+                    <h3>Vehicle ID: {{ vehicle['data']['id'] }}</h3>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <h2>{{ message }}</h2>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+{% endblock %}
