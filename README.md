@@ -14,4 +14,6 @@ pip install flask_login
 pip install requests
 ```
 
+(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/weatherapicom/python.git#egg=weatherapipython`)
+
 This must be done for every module.
